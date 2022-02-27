@@ -9,7 +9,6 @@ import invariant from "tiny-invariant";
 import { createPost } from "~/post";
 
 export const action = async ({ request }) => {
-    await new Promise((res) => setTimeout(res, 1000));
 
     const formData = await request.formData();
 
