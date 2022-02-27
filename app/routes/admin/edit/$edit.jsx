@@ -31,7 +31,7 @@ export const action = async ({ request }) => {
     invariant(typeof markdown === "string");
     await createPost({ title, slug, markdown })
 
-    return redirect("/admin")
+    return redirect(`/posts/${slug}`)
 }
 
 export const loader = async ({
@@ -49,7 +49,7 @@ export default function AdminEditSlug() {
     return (
         <div>
             <h2>Edit Blog: {post.title}</h2>
-            <Form method="post">
+            <Form method="post" key={post.slug}>
                 <p>
                     <label>
                         Post Title:{" "}
@@ -72,7 +72,7 @@ export default function AdminEditSlug() {
                         <em>Markdown is required</em>
                     ) : null}
                     <br />
-                    <textarea key={post.slug} id="markdown" rows={20} cols={50} name="markdown" defaultValue={post.markdown}/>
+                    <textarea id="markdown" rows={20} cols={50} name="markdown" defaultValue={post.markdown}/>
                 </p>
                 <p>
                     <button type="submit">
